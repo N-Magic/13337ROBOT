@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.qualcomm.ftcrobotcontroller.test.FtcRobotController-mergeDebugAndroidTestResources-16:/values-v11/values-v11.xml",
+            "map": [
+                {
+                    "source": "/home/N/.gradle/caches/transforms-3/617f03140b07a2342b1c9d199ff4e7d7/transformed/jetified-RobotCore-9.0.1/res/values-v11/values-v11.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "138"
+                    }
+                }
+            ]
+        }
+    ]
+}
