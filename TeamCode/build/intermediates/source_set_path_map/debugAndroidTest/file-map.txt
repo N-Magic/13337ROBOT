@@ -1,7 +1,7 @@
-org.firstinspires.ftc.teamcode.test.TeamCode-androidTest-0 /home/N/Documents/GitHub/13337ROBOT/TeamCode/build/generated/res/resValues/androidTest/debug
-org.firstinspires.ftc.teamcode.test.TeamCode-androidTest-1 /home/N/Documents/GitHub/13337ROBOT/TeamCode/build/generated/res/rs/androidTest/debug
-org.firstinspires.ftc.teamcode.test.TeamCode-mergeDebugAndroidTestResources-2 /home/N/Documents/GitHub/13337ROBOT/TeamCode/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
-org.firstinspires.ftc.teamcode.test.TeamCode-mergeDebugAndroidTestResources-3 /home/N/Documents/GitHub/13337ROBOT/TeamCode/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
-org.firstinspires.ftc.teamcode.test.TeamCode-merged_res-4 /home/N/Documents/GitHub/13337ROBOT/TeamCode/build/intermediates/merged_res/debugAndroidTest
-org.firstinspires.ftc.teamcode.test.TeamCode-androidTest-5 /home/N/Documents/GitHub/13337ROBOT/TeamCode/src/androidTest/res
-org.firstinspires.ftc.teamcode.test.TeamCode-androidTestDebug-6 /home/N/Documents/GitHub/13337ROBOT/TeamCode/src/androidTestDebug/res
+org.firstinspires.ftc.teamcode.test.TeamCode-androidTest-0 C:\Users\mcase\FTCrobotics\12-14\13337ROBOT\TeamCode\build\generated\res\resValues\androidTest\debug
+org.firstinspires.ftc.teamcode.test.TeamCode-androidTest-1 C:\Users\mcase\FTCrobotics\12-14\13337ROBOT\TeamCode\build\generated\res\rs\androidTest\debug
+org.firstinspires.ftc.teamcode.test.TeamCode-mergeDebugAndroidTestResources-2 C:\Users\mcase\FTCrobotics\12-14\13337ROBOT\TeamCode\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+org.firstinspires.ftc.teamcode.test.TeamCode-mergeDebugAndroidTestResources-3 C:\Users\mcase\FTCrobotics\12-14\13337ROBOT\TeamCode\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+org.firstinspires.ftc.teamcode.test.TeamCode-merged_res-4 C:\Users\mcase\FTCrobotics\12-14\13337ROBOT\TeamCode\build\intermediates\merged_res\debugAndroidTest
+org.firstinspires.ftc.teamcode.test.TeamCode-androidTest-5 C:\Users\mcase\FTCrobotics\12-14\13337ROBOT\TeamCode\src\androidTest\res
+org.firstinspires.ftc.teamcode.test.TeamCode-androidTestDebug-6 C:\Users\mcase\FTCrobotics\12-14\13337ROBOT\TeamCode\src\androidTestDebug\res
