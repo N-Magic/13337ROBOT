@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 @Autonomous(group = "drive")
 public class AttemptAuto extends LinearOpMode {
 
-    private double correctionInch = (95 / 60); // kms (Still untuned even with StraightTest, nothing is accurate)
+    private double correctionInch = (95 / 60);
 
     private void clawToggle(Boolean open) {
         if (open) {
