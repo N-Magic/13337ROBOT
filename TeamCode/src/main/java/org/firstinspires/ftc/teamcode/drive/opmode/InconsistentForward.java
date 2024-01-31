@@ -60,7 +60,6 @@ public class InconsistentForward extends LinearOpMode {
             // old
             if (pathingDistance <= halfsies) {
                 if (speed < initSpeed) {
-<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/drive/opmode/InconsistentForward.java
                     speed = (startRate + (accelerationRate * pathingDistance));
                 } else {
                     speed = initSpeed;
@@ -70,17 +69,7 @@ public class InconsistentForward extends LinearOpMode {
                     speed = ((distanceLeft * accelerationRate) + stopRate);
                 } if (speed < stopRate) {
                     speed = stopRate;
-=======
-                    speed = (startRate+(accelerationRate*pathingDistance));
-                } else {
-                    speed = initSpeed;
->>>>>>> 754f9d3c03de1717f14e3c1efa4b327c04b548a2:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/drive/opmode/DMT.java
                 }
-            } else {
-                if (((distanceLeft*accelerationRate) + stopRate) < speed) {
-                    speed = ((distanceLeft*acceleration)+stopRate);
-                }
-                if (speed < stopRate) speed = stopRate;
             }
 
             running = false;
