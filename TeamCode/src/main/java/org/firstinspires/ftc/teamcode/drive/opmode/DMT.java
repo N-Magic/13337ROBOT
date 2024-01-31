@@ -56,12 +56,16 @@ public class DMT extends LinearOpMode {
             pathingDistance = rightRear.getCurrentPosition() - initialMotorPositions[3];
             distanceLeft = actualDistance - pathingDistance;
             if (pathingDistance <= halfsies) {
-                speed += accelerationRate;
-            } else {
-                double theory = accelerationRate * distanceLeft;
-                if (theory < speed && theory > 0) {
-                    speed = theory;
+                if (speed < initSpeed) {
+                    speed = (startRate+(accelerationRate*pathingDistance));
+                } else {
+                    speed = initSpeed;
                 }
+            } else {
+                if (((distanceLeft*accelerationRate) + stopRate) < speed) {
+                    speed = ((distanceLeft*acceleration)+stopRate);
+                }
+                if (speed < stopRate) speed = stopRate;
             }
 
             running = false;
