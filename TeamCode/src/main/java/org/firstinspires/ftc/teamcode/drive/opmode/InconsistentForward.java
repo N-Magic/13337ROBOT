@@ -52,13 +52,13 @@ public class InconsistentForward extends LinearOpMode {
 
         int[] initialMotorPositions = {leftFront.getCurrentPosition(), rightFront.getCurrentPosition(), leftRear.getCurrentPosition(), rightRear.getCurrentPosition()};
         double lowestPosition = 0.0;
-        Boolean running = true;
+        boolean running = true;
 
         while (running) {
             pathingDistance = rightRear.getCurrentPosition() - initialMotorPositions[3];
             distanceLeft = actualDistance - pathingDistance;
             // old
-            if (pathingDistance <= halfsies) {
+            if (distanceLeft <= halfsies) {
                 if (speed < initSpeed) {
                     speed = (startRate + (accelerationRate * pathingDistance));
                 } else {
@@ -104,7 +104,7 @@ public class InconsistentForward extends LinearOpMode {
         double distanceRatio = overallDistanceModifier;
         distance = -distance;
         int[] initialMotorPositions = {leftFront.getCurrentPosition(),rightFront.getCurrentPosition(),leftRear.getCurrentPosition(),rightRear.getCurrentPosition()};
-        Boolean running = true;
+        boolean running = true;
         while (running) {
             running = false;
             if (leftFront.getCurrentPosition() > (initialMotorPositions[0] + (distance * distanceRatio))) {
@@ -222,9 +222,9 @@ public class InconsistentForward extends LinearOpMode {
         armAngle.setTargetPosition(armAngle.getCurrentPosition()+250);
         armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        moveForward(150,0.2);
-        sleep(25000);
-        moveForward(50,0.4);
+        moveForward(100,0.2);
+//        sleep(25000);
+//        moveForward(50,0.4);
 
     }
 
