@@ -23,8 +23,8 @@ public class XDRIVE extends LinearOpMode {
 //    val lengthMin: Double = -0.41
 //    val lengthMax: Double = 0.19
 
-    double lengthMin = -10.0;
-    double lengthMax = 10.0;
+    double lengthMin = -.93;
+    double lengthMax = -.35;
 
 
     double stickX = 0.0;
@@ -114,7 +114,7 @@ public class XDRIVE extends LinearOpMode {
         }
 
         theClaw.setDirection(Servo.Direction.REVERSE);
-        theClaw.setPosition(theClaw.getPosition() + ((gamepad2.left_stick_x / 250.0)));
+        theClaw.setPosition(theClaw.getPosition() + ((gamepad2.left_stick_x / 300.0)));
 
         telemetry.addData("Claw Direction", theClaw.getDirection());
         telemetry.addData("Claw Position", theClaw.getPosition());
@@ -126,7 +126,7 @@ public class XDRIVE extends LinearOpMode {
 
     private void extensionCon() {
 
-        double extension = armLength.getPower() + (gamepad2.left_stick_y / 300.0);
+        double extension = armLength.getPower() + (gamepad2.left_stick_y / 350.0);
         if ((extension >= lengthMin) && (extension <= lengthMax)) {
             armLength.setPower(extension);
         }
@@ -138,7 +138,7 @@ public class XDRIVE extends LinearOpMode {
 
     private void wristCon() {
 
-        armWrist.setPosition(armWrist.getPosition() + ((gamepad2.right_stick_x / 300.)));
+        armWrist.setPosition(armWrist.getPosition() + ((gamepad2.right_stick_x / 350.)));
 
         telemetry.addData("WRIST ANGLE", armWrist.getPosition());
 

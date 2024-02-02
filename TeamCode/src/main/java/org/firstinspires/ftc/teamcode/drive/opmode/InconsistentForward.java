@@ -18,11 +18,12 @@ public class InconsistentForward extends LinearOpMode {
 
     private CRServo armLength;
 
-    double overallDistanceModifier = 1.0;
-    double accelerationRate = 0.01;
-    double startRate = 0.02;
-    double stopRate = 0.02;
-    double theTurnAdjustor = 6.45;
+    private final double overallDistanceModifier = 17.4438;
+    private final double accelerationRate = 0.0005;
+//    private final double deAccelerationRate = 0.0002;
+    private final double startRate = 0.08;
+    private final double stopRate = 0.06;
+    private final double theTurnAdjustor = 6.4;
     private Servo armWrist;
     private Servo theClaw;
 //    val lengthMin: Double = -0.41
@@ -58,7 +59,7 @@ public class InconsistentForward extends LinearOpMode {
             pathingDistance = rightRear.getCurrentPosition() - initialMotorPositions[3];
             distanceLeft = actualDistance - pathingDistance;
             // old
-            if (distanceLeft <= halfsies) {
+            if (distanceLeft >= halfsies) {
                 if (speed < initSpeed) {
                     speed = (startRate + (accelerationRate * pathingDistance));
                 } else {
@@ -99,27 +100,49 @@ public class InconsistentForward extends LinearOpMode {
 
     }
 
-    private void moveReverse(double distance, double speed) {
+    private void moveReverse(double distance, double initSpeed) {
         // frontLeft, frontRight, rearLeft, rearRight
         double distanceRatio = overallDistanceModifier;
-        distance = -distance;
+        double actualDistance = distance * distanceRatio;
+        double halfsies = actualDistance / 2;
+        double pathingDistance;
+        double distanceLeft;
+        double speed = 0;
+
         int[] initialMotorPositions = {leftFront.getCurrentPosition(),rightFront.getCurrentPosition(),leftRear.getCurrentPosition(),rightRear.getCurrentPosition()};
         boolean running = true;
         while (running) {
+            pathingDistance = rightRear.getCurrentPosition() - initialMotorPositions[3];
+            distanceLeft = actualDistance - pathingDistance;
+            // old
+            if (distanceLeft >= halfsies) {
+                if (speed < initSpeed) {
+                    speed = (startRate + (accelerationRate * -pathingDistance));
+                } else {
+                    speed = initSpeed;
+                }
+            } else {
+                if (((distanceLeft * accelerationRate) + stopRate) < speed) {
+                    speed = (((pathingDistance-actualDistance) * accelerationRate) + stopRate);
+                } if (speed < stopRate) {
+                    speed = stopRate;
+                }
+            }
+
             running = false;
-            if (leftFront.getCurrentPosition() > (initialMotorPositions[0] + (distance * distanceRatio))) {
+            if (leftFront.getCurrentPosition() > (initialMotorPositions[0] + (-distance * distanceRatio))) {
                 leftFront.setPower(-speed);
                 running = true;
             }
-            if (rightFront.getCurrentPosition() > (initialMotorPositions[1] + (distance * distanceRatio))) {
+            if (rightFront.getCurrentPosition() > (initialMotorPositions[1] + (-distance * distanceRatio))) {
                 rightFront.setPower(-speed);
                 running = true;
             }
-            if (leftRear.getCurrentPosition() > (initialMotorPositions[2] + (distance * distanceRatio))) {
+            if (leftRear.getCurrentPosition() > (initialMotorPositions[2] + (-distance * distanceRatio))) {
                 leftRear.setPower(-speed);
                 running = true;
             }
-            if (rightRear.getCurrentPosition() > (initialMotorPositions[3] + (distance * distanceRatio))) {
+            if (rightRear.getCurrentPosition() > (initialMotorPositions[3] + (-distance * distanceRatio))) {
                 rightRear.setPower(-speed);
                 running = true;
             }
@@ -198,6 +221,26 @@ public class InconsistentForward extends LinearOpMode {
 
     }
 
+//    private void setClaw(boolean open, double angle) {
+//
+//        //
+//
+//    }
+//
+//    private void setClaw(boolean open) {
+//
+//        //
+//
+//    }
+//
+//    private void setArm(double length, double wristAngle) {
+//
+//        if (length >= -1 && length <= -0.355) {
+//
+//        }
+//
+//    }
+
     @Override
     public void runOpMode() {
 
@@ -219,10 +262,18 @@ public class InconsistentForward extends LinearOpMode {
         armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Double startingPosition = 0.0;
-        armAngle.setTargetPosition(armAngle.getCurrentPosition()+250);
+        armAngle.setTargetPosition(armAngle.getCurrentPosition()+1000);
         armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        moveForward(100,0.2);
+
+        moveForward(80,0.6);
+        moveReverse(40,0.6);
+        turnRight(90,0.2);
+        moveForward(40,0.4);
+        turnLeft(90,0.2);
+        moveForward(60,0.6);
+        turnLeft(90,0.2);
+
 //        sleep(25000);
 //        moveForward(50,0.4);
 

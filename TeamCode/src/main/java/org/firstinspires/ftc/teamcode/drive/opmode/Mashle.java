@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "InconsistentForward", group = "")
-public class Autonomous extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "Mashle", group = "")
+public class Mashle extends LinearOpMode {
 
     private DcMotor rightRear, leftRear, rightFront, leftFront, thrower, armAngle;
 
@@ -41,53 +41,63 @@ public class Autonomous extends LinearOpMode {
     boolean clawOn = false;
     boolean clawSwitch = false;
 
-    private void moveForward(double distance, double initSpeed) {
+    private void moveForward(double inputGoalDistance, double maxSpeed) {
         // frontLeft, frontRight, rearLeft, rearRight
-        double distanceRatio = overallDistanceModifier;
-        double actualDistance = distance * distanceRatio;
-        double halfsies = actualDistance / 2;
-        double pathingDistance;
+        double goalDistance = overallDistanceModifier * inputGoalDistance;
+        double halfOfGoalDistance = goalDistance / 2;
         double distanceLeft;
         double speed = 0;
+        double distanceTravelled;
 
         int[] initialMotorPositions = {leftFront.getCurrentPosition(), rightFront.getCurrentPosition(), leftRear.getCurrentPosition(), rightRear.getCurrentPosition()};
         double lowestPosition = 0.0;
         boolean running = true;
 
         while (running) {
-            pathingDistance = rightRear.getCurrentPosition() - initialMotorPositions[3];
-            distanceLeft = actualDistance - pathingDistance;
+            distanceTravelled = rightRear.getCurrentPosition() - initialMotorPositions[3];
+            distanceLeft = goalDistance - distanceTravelled;
             // old
-            if (distanceLeft >= halfsies) {
-                if (speed < initSpeed) {
-                    speed = (startRate + (accelerationRate * pathingDistance));
+            if (distanceLeft >= halfOfGoalDistance) {
+                if (speed < maxSpeed) {
+                    speed = (startRate + (accelerationRate * distanceTravelled));
                 } else {
-                    speed = initSpeed;
+                    speed = maxSpeed;
                 }
             } else {
+
                 if (((distanceLeft * accelerationRate) + stopRate) < speed) {
-                    speed = ((distanceLeft * accelerationRate) + stopRate);
-                } if (speed < stopRate) {
-                    speed = stopRate;
+                    if ((distanceLeft*accelerationRate) + stopRate > stopRate) {
+                        speed = ((distanceLeft*accelerationRate) + stopRate);
+                    } else {
+                        speed = (stopRate);
+                    }
                 }
             }
 
             running = false;
-            if (leftFront.getCurrentPosition() < (initialMotorPositions[0] + actualDistance)) {
+            if (leftFront.getCurrentPosition() < (initialMotorPositions[0] + goalDistance)) {
                 leftFront.setPower(speed);
                 running = true;
+            } else {
+                leftFront.setPower(0.0);
             }
-            if (rightFront.getCurrentPosition() < (initialMotorPositions[1] + actualDistance)) {
+            if (rightFront.getCurrentPosition() < (initialMotorPositions[1] + goalDistance)) {
                 rightFront.setPower(speed);
                 running = true;
+            } else {
+                rightFront.setPower(0.0);
             }
-            if (leftRear.getCurrentPosition() < (initialMotorPositions[2] + actualDistance)) {
+            if (leftRear.getCurrentPosition() < (initialMotorPositions[2] + goalDistance)) {
                 leftRear.setPower(speed);
                 running = true;
+            } else {
+                leftRear.setPower(0.0);
             }
-            if (rightRear.getCurrentPosition() < (initialMotorPositions[3] + actualDistance)) {
+            if (rightRear.getCurrentPosition() < (initialMotorPositions[3] + goalDistance)) {
                 rightRear.setPower(speed);
                 running = true;
+            } else {
+                rightRear.setPower(0.0);
             }
 
 
@@ -266,12 +276,12 @@ public class Autonomous extends LinearOpMode {
 
 
         moveForward(80,0.6);
-        moveReverse(40,0.6);
-        turnRight(90,0.2);
-        moveForward(40,0.4);
-        turnLeft(90,0.2);
-        moveForward(60,0.6);
-        turnLeft(90,0.2);
+//        moveReverse(40,0.6);
+//        turnRight(90,0.2);
+//        moveForward(40,0.4);
+//        turnLeft(90,0.2);
+//        moveForward(60,0.6);
+//        turnLeft(90,0.2);
 
 //        sleep(25000);
 //        moveForward(50,0.4);
