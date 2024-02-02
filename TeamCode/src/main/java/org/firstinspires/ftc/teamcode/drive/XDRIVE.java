@@ -126,19 +126,29 @@ public class XDRIVE extends LinearOpMode {
 
     private void extensionCon() {
 
+<<<<<<< HEAD
         double extension = armLength.getPower() + (gamepad2.left_stick_y / 350.0);
         if ((extension >= lengthMin) && (extension <= lengthMax)) {
             armLength.setPower(extension);
         }
+=======
+        double extension = armLength.getPower() + (gamepad2.left_stick_y / 300.0);
+        armLength.setPower(extension);
+>>>>>>> 189afb40d929945503e3cc787b66983b1c5bc56b
 
         telemetry.addData("ARM LENGTH", armLength.getPower());
+        telemetry.addData("ARM LENGTH - extensionVar", extension);
 
     }
 
 
     private void wristCon() {
 
+<<<<<<< HEAD
         armWrist.setPosition(armWrist.getPosition() + ((gamepad2.right_stick_x / 350.)));
+=======
+        armWrist.setPosition(armWrist.getPosition() + ((gamepad2.right_stick_x / 300.0)));
+>>>>>>> 189afb40d929945503e3cc787b66983b1c5bc56b
 
         telemetry.addData("WRIST ANGLE", armWrist.getPosition());
 

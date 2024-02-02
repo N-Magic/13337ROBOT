@@ -275,6 +275,7 @@ public class Mashle extends LinearOpMode {
         armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
+<<<<<<< HEAD
         moveForward(80,0.6);
 //        moveReverse(40,0.6);
 //        turnRight(90,0.2);
@@ -282,6 +283,21 @@ public class Mashle extends LinearOpMode {
 //        turnLeft(90,0.2);
 //        moveForward(60,0.6);
 //        turnLeft(90,0.2);
+=======
+        moveForward(80,0.6); // 32in
+        moveReverse(40,0.6); // 16in
+        sleep(500);
+        turnRight(95,0.2);
+        sleep(500);
+        moveForward(40,0.4);
+        turnLeft(93,0.2);
+        sleep(500);
+        moveForward(120,0.6);
+        turnLeft(93,0.2);
+        sleep(500);
+        moveForward(292, 0.4); // 120in
+
+>>>>>>> 189afb40d929945503e3cc787b66983b1c5bc56b
 
 //        sleep(25000);
 //        moveForward(50,0.4);

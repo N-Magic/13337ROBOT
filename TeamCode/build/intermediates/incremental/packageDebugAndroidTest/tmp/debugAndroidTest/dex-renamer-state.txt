@@ -1,6 +1,6 @@
-#Thu Feb 01 07:55:36 CST 2024
-base.0=/home/n/Documents/Robotics/13337ROBOT/TeamCode/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
-base.1=/home/n/Documents/Robotics/13337ROBOT/TeamCode/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/3/classes.dex
+#Fri Feb 02 15:56:02 CST 2024
+base.0=C\:\\Users\\mcase\\FTCrobotics\\12-14\\13337ROBOT\\TeamCode\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.1=C\:\\Users\\mcase\\FTCrobotics\\12-14\\13337ROBOT\\TeamCode\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\3\\classes.dex
 path.0=0/classes.dex
 path.1=3/classes.dex
 renamed.0=classes.dex
