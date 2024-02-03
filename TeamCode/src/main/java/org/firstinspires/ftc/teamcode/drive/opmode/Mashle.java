@@ -16,12 +16,14 @@ public class Mashle extends LinearOpMode {
     private DcMotor rightRear, leftRear, rightFront, leftFront, thrower, armAngle;
 
     private CRServo armLength;
+    private int armAngleNumber;
+    private double armLengthNumber, wristNumber, clawNumber;
 
     private final double overallDistanceModifier = 17.4438;
-    private final double accelerationRate = 0.0005;
+    private final double accelerationRate = 0.0007;
 //    private final double deAccelerationRate = 0.0002;
-    private final double startRate = 0.08;
-    private final double stopRate = 0.06;
+    private final double startRate = 0.09;
+    private final double stopRate = 0.07;
     private final double theTurnAdjustor = 6.4;
     private Servo armWrist;
     private Servo theClaw;
@@ -54,6 +56,7 @@ public class Mashle extends LinearOpMode {
         boolean running = true;
 
         while (running) {
+            armControl();
             distanceTravelled = rightRear.getCurrentPosition() - initialMotorPositions[3];
             distanceLeft = goalDistance - distanceTravelled;
             // old
@@ -78,6 +81,7 @@ public class Mashle extends LinearOpMode {
             if (leftFront.getCurrentPosition() < (initialMotorPositions[0] + goalDistance)) {
                 leftFront.setPower(speed);
                 running = true;
+                armControl();
             } else {
                 leftFront.setPower(0.0);
             }
@@ -99,6 +103,7 @@ public class Mashle extends LinearOpMode {
             } else {
                 rightRear.setPower(0.0);
             }
+            armControl();
 
 
         }
@@ -109,8 +114,16 @@ public class Mashle extends LinearOpMode {
 
     }
 
+    private void armControl() {
+        armAngle.setTargetPosition(armAngleNumber);
+//        armLength.setPower(armLengthNumber);
+        armWrist.setPosition(wristNumber);
+        theClaw.setPosition(clawNumber);
+    }
+
     private void moveReverse(double distance, double initSpeed) {
         // frontLeft, frontRight, rearLeft, rearRight
+
         double distanceRatio = overallDistanceModifier;
         double actualDistance = distance * distanceRatio;
         double halfsies = actualDistance / 2;
@@ -120,7 +133,8 @@ public class Mashle extends LinearOpMode {
 
         int[] initialMotorPositions = {leftFront.getCurrentPosition(),rightFront.getCurrentPosition(),leftRear.getCurrentPosition(),rightRear.getCurrentPosition()};
         boolean running = true;
-        while (running) {
+        while (running){
+            armControl();
             pathingDistance = rightRear.getCurrentPosition() - initialMotorPositions[3];
             distanceLeft = actualDistance - pathingDistance;
             // old
@@ -171,6 +185,7 @@ public class Mashle extends LinearOpMode {
         boolean running = true;
         double offset = angle * turnRatio;
         while (running) {
+            armControl();
             running = false;
             if (leftFront.getCurrentPosition() < (offset + initialMotorPosition[0])) {
                 leftFront.setPower(speed);
@@ -204,6 +219,7 @@ public class Mashle extends LinearOpMode {
         boolean running = true;
         double offset = angle * turnRatio;
         while (running) {
+            armControl();
             running = false;
             if (leftFront.getCurrentPosition() > (-offset + initialMotorPosition[0])) {
                 leftFront.setPower(-speed);
@@ -271,20 +287,30 @@ public class Mashle extends LinearOpMode {
         armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Double startingPosition = 0.0;
-        armAngle.setTargetPosition(armAngle.getCurrentPosition()+1000);
-        armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        armAngle.setTargetPosition(armAngle.getCurrentPosition()+1000);
+//        armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-<<<<<<< HEAD
-        moveForward(80,0.6);
-//        moveReverse(40,0.6);
-//        turnRight(90,0.2);
-//        moveForward(40,0.4);
-//        turnLeft(90,0.2);
-//        moveForward(60,0.6);
-//        turnLeft(90,0.2);
-=======
+//<<<<<<< HEAD
+//        moveForward(80,0.6);
+////        moveReverse(40,0.6);
+////        turnRight(90,0.2);
+////        moveForward(40,0.4);
+////        turnLeft(90,0.2);
+////        moveForward(60,0.6);
+////        turnLeft(90,0.2);
+//=======
+        armAngleNumber = 1579;
+        clawNumber = 0.0;
+        wristNumber = .64;
+//        armLengthNumber = armLength
+        armControl();
         moveForward(80,0.6); // 32in
+        armAngleNumber = 1000;
+        wristNumber = .86;
+        clawNumber = 1.0;
+
+        armControl();
         moveReverse(40,0.6); // 16in
         sleep(500);
         turnRight(95,0.2);
@@ -297,7 +323,7 @@ public class Mashle extends LinearOpMode {
         sleep(500);
         moveForward(292, 0.4); // 120in
 
->>>>>>> 189afb40d929945503e3cc787b66983b1c5bc56b
+//>>>>>>> 189afb40d929945503e3cc787b66983b1c5bc56b
 
 //        sleep(25000);
 //        moveForward(50,0.4);
