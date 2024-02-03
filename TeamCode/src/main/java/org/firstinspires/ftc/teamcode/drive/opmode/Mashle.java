@@ -22,8 +22,8 @@ public class Mashle extends LinearOpMode {
     private final double overallDistanceModifier = 17.4438;
     private final double accelerationRate = 0.0005;
 //    private final double deAccelerationRate = 0.0002;
-    private final double startRate = 0.08;
-    private final double stopRate = 0.07;
+    private final double startRate = 0.12;
+    private final double stopRate = 0.14;
     private final double theTurnAdjustor = 6.4;
     private Servo armWrist;
     private Servo theClaw;
@@ -115,9 +115,9 @@ public class Mashle extends LinearOpMode {
     }
 
     private void armControl() {
-        armAngle.setTargetPosition(armAngleNumber);
-        if (armAngle.getCurrentPosition()<armAngleNumber) armAngle.setPower(0.1);
-        if (armAngle.getCurrentPosition()>armAngleNumber) armAngle.setPower(-0.2);
+//        armAngle.setTargetPosition(armAngleNumber);
+//        if (armAngle.getCurrentPosition()<armAngleNumber) armAngle.setPower(0.1);
+//        if (armAngle.getCurrentPosition()>armAngleNumber) armAngle.setPower(-0.2);
 //        armLength.setPower(armLengthNumber);
         armWrist.setPosition(wristNumber);
         theClaw.setPosition(clawNumber);
@@ -284,46 +284,66 @@ public class Mashle extends LinearOpMode {
         armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        armAngleNumber = 277;
-        clawNumber = 0.0;
-        wristNumber = .61;
-        for ( int i = 0; i < 400; i++ ) {
-            armControl();
-            sleep(1);
-        } armAngle.setPower(0);
-
-        armAngleNumber = 277;
-        wristNumber = 0.847;
-        for ( int i = 0; i < 100; i++ ) {
-            armControl();
-            sleep(1);
-        } armAngle.setPower(0);
-
-        armAngleNumber = -370;
-        clawNumber = 0.0;
-        for ( int i = 0; i < 250; i++ ) {
-            armControl();
-            sleep(1);
-        } armAngle.setPower(0);
+//        armAngleNumber = 901;
+//        clawNumber = 0.0;
+//        wristNumber = 1.0;
+//        for ( int i = 0; i < 300; i++ ) {
+//            armControl();
+//            sleep(1);
+//        } armAngle.setPower(0);
+//
+////        armAngleNumber = 981;
+//        wristNumber = 0.833;
+//        for ( int i = 0; i < 50; i++ ) {
+//            armControl();
+//            sleep(1);
+//        } armAngle.setPower(0);
+//
+//        armAngleNumber = 210;
+//        for ( int i = 0; i < 200; i++ ) {
+//            armControl();
+//            sleep(1);
+//        } armAngle.setPower(0);
+        armAngleNumber = 260;
+        wristNumber=0.9;
+        theClaw.setPosition(0.0);
+        sleep(500);
+        armAngle.setPower(0.6);
+        armWrist.setPosition(0.89);
+        sleep(500);
+        armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armAngle.setPower(0.0);
 
         waitForStart();
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRear.setDirection((DcMotorSimple.Direction.REVERSE));
+//        armWrist.setPosition(0.98);
+        armAngle.setPower(0.6);
+        sleep(400);
+//        armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armAngle.setPower(0.0);
 
-
-        moveForward(80,0.6); // 32in
+        moveForward(70,0.6); // 32in
 
         clawNumber = 1.0;
-        for ( int i = 0; i < 50; i++ ) {
-            armControl();
-            sleep(1);
-        } armAngle.setPower(0);
 
-        armAngleNumber = 1000;
-        for ( int i = 0; i < 1000; i++ ) {
-            armControl();
-            sleep(1);
-        } armAngle.setPower(0);
+        for (double j = 0; j <= .75; j += 0.01) {
+            theClaw.setPosition(j);
+            sleep(10);
+        }
+
+        theClaw.setPosition(1.0);
+        sleep(500);
+        armAngle.setPower(0.5);
+        sleep(500);
+        armWrist.setPosition(0.89);
+        armAngle.setPower(0.0);
+
+//        armAngleNumber = 1000;
+//        for ( int i = 0; i < 1000; i++ ) {
+//            armControl();
+//            sleep(1);
+//        } armAngle.setPower(0);
 
 
 
@@ -335,17 +355,17 @@ public class Mashle extends LinearOpMode {
 //        clawNumber = 1.0;
 
         armControl();
-        moveReverse(40,0.6); // 16in
+        moveReverse(30,0.6); // 16in
         sleep(500);
         turnRight(95,0.2);
         sleep(500);
         moveForward(40,0.4);
         turnLeft(93,0.2);
         sleep(500);
-        moveForward(120,0.6);
-        turnLeft(93,0.2);
+        moveForward(80,0.7);
+        turnLeft(93,0.3);
         sleep(500);
-        moveForward(292, 0.4); // 120in
+        moveForward(270,.8); // 120in
 
 //>>>>>>> 189afb40d929945503e3cc787b66983b1c5bc56b
 

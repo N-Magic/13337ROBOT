@@ -285,8 +285,8 @@ public class XDRIVE extends LinearOpMode {
                 return input;
             }
 
-            Scalar low = new Scalar(107, 77, 31);
-            Scalar high = new Scalar(112, 84, 35);
+            Scalar low = new Scalar(0, 85, 40);
+            Scalar high = new Scalar(5, 95, 45);
             Mat thresh = new Mat();
 
             Core.inRange(mat, low, high, thresh);
