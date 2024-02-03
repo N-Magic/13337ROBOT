@@ -49,7 +49,7 @@ public class XDRIVE extends LinearOpMode {
 
     double lengthMin = -.93;
 
-    private boolean left = false;
+    private boolean middle = false;
     public boolean right = false;
     double lengthMax = -.35;
 
@@ -229,7 +229,7 @@ public class XDRIVE extends LinearOpMode {
             throwerCon();
             telemetry.addData("FPS", String.format("%.2f", camera.getFps()));
             telemetry.addData("location", location);
-            telemetry.addData("left", left);
+            telemetry.addData("middle", middle);
             telemetry.addData("right", right);
             telemetry.update();
         } camera.stopStreaming();
@@ -285,8 +285,8 @@ public class XDRIVE extends LinearOpMode {
                 return input;
             }
 
-            Scalar low = new Scalar(90, 80, 60);
-            Scalar high = new Scalar(110, 90, 75);
+            Scalar low = new Scalar(107, 77, 31);
+            Scalar high = new Scalar(112, 84, 35);
             Mat thresh = new Mat();
 
             Core.inRange(mat, low, high, thresh);
@@ -306,13 +306,13 @@ public class XDRIVE extends LinearOpMode {
                 boundRect[i] = Imgproc.boundingRect(new MatOfPoint(contoursPoly[i].toArray()));
             }
 
-            double left_x = 0.40 * width;
-            double right_x = 0.60 * width;
-            left = false;
+            double left_x = 0.30 * width;
+            double right_x = 0.70 * width;
+            middle = false;
             right = false;
             for (int i = 0; i != boundRect.length; i++) {
                 if (boundRect[i].x < left_x) {
-                    left = true;
+                    middle = true;
                 }
                 if (boundRect[i].x * boundRect[i].width > right_x) {
                     right = true;
@@ -321,7 +321,7 @@ public class XDRIVE extends LinearOpMode {
                 Imgproc.rectangle(mat, boundRect[i], new Scalar(0.5, 76.9, 89.9));
             }
 
-            if (!left) location = 1;
+            if (!middle) location = 1;
             else if (!right) location = 2;
             else location = 3;
 

@@ -20,9 +20,9 @@ public class Mashle extends LinearOpMode {
     private double armLengthNumber, wristNumber, clawNumber;
 
     private final double overallDistanceModifier = 17.4438;
-    private final double accelerationRate = 0.0007;
+    private final double accelerationRate = 0.0005;
 //    private final double deAccelerationRate = 0.0002;
-    private final double startRate = 0.09;
+    private final double startRate = 0.08;
     private final double stopRate = 0.07;
     private final double theTurnAdjustor = 6.4;
     private Servo armWrist;
@@ -116,6 +116,8 @@ public class Mashle extends LinearOpMode {
 
     private void armControl() {
         armAngle.setTargetPosition(armAngleNumber);
+        if (armAngle.getCurrentPosition()<armAngleNumber) armAngle.setPower(0.1);
+        if (armAngle.getCurrentPosition()>armAngleNumber) armAngle.setPower(-0.2);
 //        armLength.setPower(armLengthNumber);
         armWrist.setPosition(wristNumber);
         theClaw.setPosition(clawNumber);
@@ -278,37 +280,59 @@ public class Mashle extends LinearOpMode {
         armWrist = hardwareMap.servo.get("AW1");
         theClaw = hardwareMap.servo.get("TC2");
         thrower = hardwareMap.dcMotor.get("THROWER");
+        thrower.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
+        armAngleNumber = 277;
+        clawNumber = 0.0;
+        wristNumber = .61;
+        for ( int i = 0; i < 400; i++ ) {
+            armControl();
+            sleep(1);
+        } armAngle.setPower(0);
+
+        armAngleNumber = 277;
+        wristNumber = 0.847;
+        for ( int i = 0; i < 100; i++ ) {
+            armControl();
+            sleep(1);
+        } armAngle.setPower(0);
+
+        armAngleNumber = -370;
+        clawNumber = 0.0;
+        for ( int i = 0; i < 250; i++ ) {
+            armControl();
+            sleep(1);
+        } armAngle.setPower(0);
 
         waitForStart();
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRear.setDirection((DcMotorSimple.Direction.REVERSE));
 
-        thrower.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        Double startingPosition = 0.0;
-//        armAngle.setTargetPosition(armAngle.getCurrentPosition()+1000);
-//        armAngle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        moveForward(80,0.6); // 32in
+
+        clawNumber = 1.0;
+        for ( int i = 0; i < 50; i++ ) {
+            armControl();
+            sleep(1);
+        } armAngle.setPower(0);
+
+        armAngleNumber = 1000;
+        for ( int i = 0; i < 1000; i++ ) {
+            armControl();
+            sleep(1);
+        } armAngle.setPower(0);
 
 
-//<<<<<<< HEAD
-//        moveForward(80,0.6);
-////        moveReverse(40,0.6);
-////        turnRight(90,0.2);
-////        moveForward(40,0.4);
-////        turnLeft(90,0.2);
-////        moveForward(60,0.6);
-////        turnLeft(90,0.2);
-//=======
-        armAngleNumber = 1579;
-        clawNumber = 0.0;
-        wristNumber = .64;
+
 //        armLengthNumber = armLength
         armControl();
-        moveForward(80,0.6); // 32in
-        armAngleNumber = 1000;
-        wristNumber = .86;
-        clawNumber = 1.0;
+
+//        armAngleNumber = 1000;
+//        wristNumber = .86;
+//        clawNumber = 1.0;
 
         armControl();
         moveReverse(40,0.6); // 16in
