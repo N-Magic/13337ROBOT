@@ -1,1 +1,3 @@
+git push
+N-magic
 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
